@@ -2,7 +2,8 @@ import time
 import random
 from os import stat, system, name
 
-# define our clear function
+board = 10*[" "]
+
 def clear():
   
     if name == 'nt':
@@ -11,9 +12,6 @@ def clear():
     else:
         _ = system('clear')
   
-board = 10*[" "] 
-
-##############
 
 def display_board():
     
@@ -30,15 +28,12 @@ def display_board():
     print(f"  {board[7]}  |  {board[8]}  |  {board[9]}  ")
     print("     |     |      ")
     
-################
 
 def check_position_is_empty(location):
     global board
     if board[location] == " ":
         return True
     return False
-
-##################
 
 
 def check_win():
@@ -66,10 +61,12 @@ def check_win():
     
 def check_draw():
     global board
+    
     for i in range(1,10):
         if board[i] == " ":
             return False
     return True
+
 def menu():
     print("*************************")
     print("*          Menu         *")
@@ -135,6 +132,7 @@ def startgame():
             mark = "O"
         display_board()   
         location = int(input("please choose one of the empty locations between(1 , 9) : "))  
+        
         clear()
         
         if check_position_is_empty(location) == False:
