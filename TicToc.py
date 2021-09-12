@@ -132,6 +132,8 @@ def startgame():
             mark = "O"
         display_board()   
         location = int(input("please choose one of the empty locations between(1 , 9) : "))  
+        if not 0<location<10:
+            continue
         
         clear()
         
@@ -164,7 +166,10 @@ def startgame():
     
 def main():
     print("\t****Welcome to Tic Toc Toe Game***")
+    
     time.sleep(2)
+    clear()
+    menu()
     clear()
     startgame()
     
