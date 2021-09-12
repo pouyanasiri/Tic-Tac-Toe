@@ -107,6 +107,7 @@ def main():
             time.sleep(3)
             break
             
+            
         elif check_draw()==True:
             print ("Game Draw")
             time.sleep(3)
