@@ -1,6 +1,7 @@
 import time
 import random
-from os import system, name
+from os import stat, system, name
+
 # define our clear function
 def clear():
   
@@ -69,19 +70,62 @@ def check_draw():
         if board[i] == " ":
             return False
     return True
+def menu():
+    print("*************************")
+    print("*          Menu         *")
+    print("* 1 : Start new game    *")
+    print("* 2 : Help              *")
+    print("* 3 : Exit              *")
+    print("*                       *")
+    print("*************************")
 
-
-def main():
-    print("\t****Welcome to Tic Toc Toe Game***")
-    time.sleep(2)
-    clear()
+    choice = int(input("please choose one of the choices : "))
     
+    if choice== 1 :
+        startgame()
+    elif choice == 2 :
+        help_game()
+    elif choice == 3 :
+        exit()
+    else :
+        menu()
+        
+def help_game():
+    print("**********************************************************************************")
+    time.sleep(1)
+    print("*                      *** Description And Help ***                              *")
+    time.sleep(1)
+    print("* Tic Tac Toe in a project prepared by Pouya Nasiri                              *")
+    time.sleep(1)
+    print("* This game includes a 3 in 3 square.                                            *")
+    time.sleep(1)
+    print("* Victory condition : If you can make a straight line with 3 characters, you win *")
+    time.sleep(1)
+    print("* Equal condition : If no one can make a straight line, You draw                 *")
+    time.sleep(1)
+    print("**********************************************************************************")
+    time.sleep(3)
+    print("1 : Back   2 : Exit ")
+    choice = int(input("please enter a choice : "))
+    if choice == 1 :
+        menu()
+    elif choice == 2:
+        exit()
+    else :
+        help_game()
+
+def startgame():
+    
+    global board
+    board = 10*[" "] 
     print("the arm of player 1 is : X ")
     print("the arm of player 2 is : O ")
     time.sleep(2)   
+    
     player = random.randint(0,1)
     while True :
         clear()    
+        
         if(player % 2 != 0):    
             print("Player 1's chance , you are X")    
             mark = "X"    
@@ -89,31 +133,42 @@ def main():
         else:    
             print("Player 2's chance , you are O")    
             mark = "O"
-            
+        display_board()   
         location = int(input("please choose one of the empty locations between(1 , 9) : "))  
         clear()
+        
         if check_position_is_empty(location) == False:
             print("this location is Full !!!!!")
             display_board()
             time.sleep(3)
             continue
-
+        
         board[location]= mark        
         display_board()
         time.sleep(3)
         
         if check_win() == True:
             print(f"the player with {mark} arm ,\n\n****** you win!!!! ******")
-            time.sleep(3)
+            time.sleep(4)
+            clear()
             break
             
             
         elif check_draw()==True:
             print ("Game Draw")
-            time.sleep(3)
+            time.sleep(4)
+            clear()
             break
         
         player+=1
 
+    menu()
+    
+def main():
+    print("\t****Welcome to Tic Toc Toe Game***")
+    time.sleep(2)
+    clear()
+    startgame()
+    
 if __name__ == '__main__':
     main()
