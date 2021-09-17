@@ -76,15 +76,18 @@ def menu():
     print("*                       *")
     print("*************************")
 
-    choice = int(input("please choose one of the choices : "))
-    
-    if choice== 1 :
+    choice = input("please choose one of the choices : ")
+    clear()
+    if choice== '1' :
         startgame()
-    elif choice == 2 :
+    elif choice == '2' :
         help_game()
-    elif choice == 3 :
+    elif choice == '3' :
         exit()
     else :
+        print("Wrong input !")
+        time.sleep(2)
+        clear()
         menu()
         
 def help_game():
@@ -103,12 +106,16 @@ def help_game():
     print("**********************************************************************************")
     time.sleep(3)
     print("1 : Back   2 : Exit ")
-    choice = int(input("please enter a choice : "))
-    if choice == 1 :
+    choice = input("please enter a choice : ")
+    clear()
+    if choice == '1' :
         menu()
-    elif choice == 2:
+    elif choice == '2':
         exit()
     else :
+        print("Wrong input !")
+        time.sleep(2)
+        clear()
         help_game()
 
 def startgame():
@@ -131,10 +138,20 @@ def startgame():
             print("Player 2's chance , you are O")    
             mark = "O"
         display_board()   
-        location = int(input("please choose one of the empty locations between(1 , 9) : "))  
-        if not 0<location<10:
+        location = input("please choose one of the empty locations between(1 , 9) : ")
+        if not location.isnumeric() :
+            print("Wrong input !")
+            time.sleep(2)
+            clear()
             continue
         
+        if not 0< int(location) <10:
+            print("Wrong input !")
+            time.sleep(2)
+            clear()
+            continue
+        
+        location = int(location)
         clear()
         
         if check_position_is_empty(location) == False:
